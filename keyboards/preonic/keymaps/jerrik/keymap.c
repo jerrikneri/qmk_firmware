@@ -19,18 +19,24 @@
 
 enum preonic_layers {
   _QWERTY,
+  _DEV,
   _MOUSE,
+  _NAV,
   _COLEMAK,
   _DVORAK,
   _LOWER,
   _RAISE,
   _FUNCTION,
+  _FUNCTION2,
   _ADJUST
 };
 
 enum preonic_keycodes {
   QWERTY = SAFE_RANGE,
+  DEV,
   MOUSE,
+  NAV,
+  FUNCTION,
   COLEMAK,
   DVORAK,
   LOWER,
@@ -38,9 +44,11 @@ enum preonic_keycodes {
   BACKLIT
 };
 
+#define DEV MO(_DEV)
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
-#define FUNCTION MO(_FUNCTION)
+#define FUNCTION TG(_FUNCTION)
+#define FUNCTION2 TG(_FUNCTION2)
 
 #define KC_RCPP LGUI(LSFT(KC_5))        // Record portion of screen
 #define KC_CAPP LGUI(LSFT(KC_4))        // Capture portion of screen
@@ -87,11 +95,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_preonic_grid(
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-  KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R,  KC_T  , KC_Y   , KC_U , KC_I   , KC_O   , KC_P   , KC_MINS,
-  KC_X0   , KC_A   , KC_S   , KC_D   , KC_F,  KC_G  , KC_H   , KC_J , KC_K   , KC_L   , KC_SCLN, KC_QUOT,
-  KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_V,  KC_B  , KC_N   , KC_M , KC_COMM, KC_DOT , KC_SLSH, KC_X4  ,
-  FUNCTION, KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_XBS, RAISE, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
+  KC_GRV  , KC_1   , KC_2   , KC_3   , KC_4 , KC_5  , KC_6   , KC_7 , KC_8   , KC_9   , KC_0   , KC_BSPC  ,
+  KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R , KC_T  , KC_Y   , KC_U , KC_I   , KC_O   , KC_P   , KC_MINS  ,
+  KC_X0   , KC_A   , KC_S   , KC_D   , KC_F , KC_G  , KC_H   , KC_J , KC_K   , KC_L   , KC_SCLN, KC_QUOT  ,
+  KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_V , KC_B  , KC_N   , KC_M , KC_COMM, KC_DOT , KC_SLSH, KC_X4    ,
+  FUNCTION, KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_XSP, KC_XBS , RAISE, DEV    , _______, _______, FUNCTION2
+),
+
+[_DEV] = LAYOUT_preonic_grid(
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, KC_ESC , _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 [_MOUSE] = LAYOUT_preonic_grid(
@@ -158,7 +174,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_preonic_grid(
-  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
+  KC_TILD, LGUI(KC_1)   , LGUI(KC_2)   , LGUI(KC_3)   , LGUI(KC_4)   , LGUI(KC_5)   , LGUI(KC_6)   , LGUI(KC_7)   , LGUI(KC_8),  LGUI(KC_9)  , LGUI(KC_0)   , KC_BSPC,
   KC_TILD, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8,  KC_9  , KC_0   , KC_EQL   ,
   KC_SPLT, KC_CAPP, KC_RCPP, KC_SSL , KC_SSR , KC_LBRC, KC_RBRC, KC_4   , KC_5,  KC_6  , KC_PLUS, KC_BSLS  ,
   _______, KC_PB  , KC_PF  , KC_SU  , KC_SD  , KC_LCBR, KC_RCBR, KC_1   , KC_2,  KC_3  , KC_MINS, KC_RETURN,
@@ -186,33 +202,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_DEVT, _______, _______, _______, _______, KC_TAB , _______, _______, _______, _______, _______, _______
 ),
 
-[_FUNCTION] = LAYOUT_preonic_grid(
-  KC_F11 , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12 ,
-  KC_F11 , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12 ,
-  KC_CAPS, _______, _______, KC_DEVT, _______, _______, _______, _______, _______, _______, _______, _______,
+[_NAV] = LAYOUT_preonic_grid(
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, KC_INS , KC_DEL , _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
-/* Adjust (Lower + Raise)
- * ,-----------------------------------------------------------------------------------.
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Reset| Debug|      |      |      |      |TermOf|TermOn|      |      |  Del |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |Aud cy|Aud on|AudOff|AGnorm|AGswap|Qwerty|Colemk|Dvorak|      |      |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |Voice-|Voice+|Mus on|MusOff|MidiOn|MidOff|      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
- * `-----------------------------------------------------------------------------------'
- */
+[_FUNCTION] = LAYOUT_preonic_grid(
+  KC_F11  , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12 ,
+  KC_F11  , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12 ,
+  KC_CAPS , _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+  _______ , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______ , _______, _______, _______, _______, KC_INS , KC_DEL , _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY
+),
+
+[_FUNCTION2] = LAYOUT_preonic_grid(
+  KC_F11 , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12   ,
+  KC_F11 , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12   ,
+  KC_CAPS, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______  ,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  ,
+  _______, _______, _______, _______, _______, KC_INS , KC_DEL , _______, _______, KC_VOLD, KC_VOLU, _______
+),
+
 [_ADJUST] = LAYOUT_preonic_grid(
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-  _______, QWERTY, DEBUG,   _______, QK_BOOT, _______, _______, _______, _______, _______, _______, KC_DEL,
-  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  _______, _______,
-  _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  MOUSE, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, QWERTY , DEBUG  , _______, QK_BOOT, MI_ON  , MI_OFF , _______, _______, _______, _______, _______,
+  _______, _______, KC_SPLT, AU_ON  ,  AU_OFF, AG_NORM, AG_SWAP, _______, COLEMAK, DVORAK , _______, _______,
+  _______, MUV_DE , MUV_IN , MU_ON  ,  MU_OFF, _______, NAV    , MOUSE  , _______, _______, _______, _______,
+  _______, _______, MU_MOD , _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
 
 
@@ -229,6 +248,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MOUSE:
           if (record->event.pressed) {
             set_single_persistent_default_layer(_MOUSE);
+          }
+          return false;
+          break;
+        case NAV:
+          if (record->event.pressed) {
+            set_single_persistent_default_layer(_NAV);
+          }
+          return false;
+          break;
+        case FUNCTION:
+          if (record->event.pressed) {
+            set_single_persistent_default_layer(_FUNCTION);
           }
           return false;
           break;
@@ -287,6 +318,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     return true;
 };
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+    case _RAISE:
+        rgblight_setrgb (0x00,  0x00, 0xFF);
+        break;
+    case _LOWER:
+        rgblight_setrgb (0xFF,  0x00, 0x00);
+        break;
+    case _MOUSE:
+        rgblight_setrgb (0x00,  0xFF, 0x00);
+        break;
+    case _ADJUST:
+        rgblight_setrgb (0x7A,  0x00, 0xFF);
+        break;
+    case _NAV:
+        rgblight_setrgb (0x7A,  0xFF, 0xFF);
+        break;
+    default: //  for any other layers, or the default layer
+        rgblight_setrgb (0x00,  0xFF, 0xFF);
+        break;
+    }
+  return state;
+}
+
 
 bool muse_mode = false;
 uint8_t last_muse_note = 0;
