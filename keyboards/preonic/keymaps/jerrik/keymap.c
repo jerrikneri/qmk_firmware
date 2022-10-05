@@ -26,7 +26,7 @@ enum preonic_layers {
   _DVORAK,
   _LOWER,
   _RAISE,
-  _FN,
+  _FN1,
   _FN2,
   _ADJUST
 };
@@ -36,7 +36,8 @@ enum preonic_keycodes {
   DEV,
   MOUSE,
   NAV,
-  FN,
+  FN1,
+  FN2,
   QWERTY2,
   DVORAK,
   LOWER,
@@ -47,7 +48,7 @@ enum preonic_keycodes {
 #define DEV MO(_DEV)
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
-#define FN TG(_FN)
+#define FN1 TG(_FN1)
 #define FN2 TG(_FN2)
 
 #define KC_RCPP LGUI(LSFT(KC_5))        // Record portion of screen
@@ -99,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R , KC_T  , KC_Y   , KC_U , KC_I   , KC_O   , KC_P   , KC_MINS  ,
   KC_X0   , KC_A   , KC_S   , KC_D   , KC_F , KC_G  , KC_H   , KC_J , KC_K   , KC_L   , KC_SCLN, KC_QUOT  ,
   KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_V , KC_B  , KC_N   , KC_M , KC_COMM, KC_DOT , KC_SLSH, KC_X4    ,
-  FN      , KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_XBS , RAISE, DEV    , KC_RALT, KC_RCTL, FN2
+  FN1     , KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_XBS , RAISE, DEV    , KC_RALT, KC_RCTL, FN2
 ),
 
 [_DEV] = LAYOUT_preonic_grid(
@@ -123,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R , KC_T  , KC_Y   , KC_U , KC_I   , KC_O   , KC_P   , KC_MINS  ,
   KC_X0   , KC_A   , KC_S   , KC_D   , KC_F , KC_G  , KC_H   , KC_J , KC_K   , KC_L   , KC_SCLN, KC_QUOT  ,
   KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_V , KC_B  , KC_N   , KC_M , KC_COMM, KC_DOT , KC_SLSH, KC_X4    ,
-  FN      , KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_XBS , RAISE, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
+  FN1     , KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_XBS , RAISE, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
 ),
 
 /* Dvorak
@@ -197,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
-[_FN] = LAYOUT_preonic_grid(
+[_FN1] = LAYOUT_preonic_grid(
   KC_F11  , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12 ,
   KC_F11  , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12 ,
   KC_CAPS , _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
@@ -206,19 +207,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_FN2] = LAYOUT_preonic_grid(
-  KC_F11 , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12   ,
-  KC_F11 , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12   ,
-  KC_CAPS, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______  ,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  ,
-  _______, _______, _______, _______, _______, KC_INS , KC_DEL , _______, _______, KC_VOLD, KC_VOLU, _______
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, MI_ON  , MI_OFF , _______, _______, _______, _______, _______,
+  _______, _______, _______, AU_ON  ,  AU_OFF, AG_NORM, AG_SWAP, _______, _______, _______, _______, _______,
+  _______, MUV_DE , MUV_IN , MU_ON  ,  MU_OFF, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, MU_MOD , _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 [_ADJUST] = LAYOUT_preonic_grid(
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, QWERTY , DEBUG  , _______, QK_BOOT, MI_ON  , MI_OFF , _______, _______, _______, _______, _______,
-  _______, _______, KC_SPLT, AU_ON  ,  AU_OFF, AG_NORM, AG_SWAP, _______, QWERTY2, DVORAK , _______, _______,
-  _______, MUV_DE , MUV_IN , MU_ON  ,  MU_OFF, _______, NAV    , MOUSE  , _______, _______, _______, _______,
-  _______, _______, MU_MOD , _______, _______, _______, _______, _______, _______, _______, _______, _______
+  _______, QWERTY , _______, _______, QK_BOOT, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, KC_SPLT, _______, _______, _______, _______, _______, QWERTY2, DVORAK , _______, _______,
+  _______, _______, _______, _______, _______, _______, NAV    , MOUSE  , _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
 
 
@@ -244,9 +245,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
           return false;
           break;
-        case FN:
+        case FN1:
           if (record->event.pressed) {
-            set_single_persistent_default_layer(_FN);
+            set_single_persistent_default_layer(_FN1);
           }
           return false;
           break;
