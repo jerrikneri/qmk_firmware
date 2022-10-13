@@ -22,7 +22,7 @@ enum preonic_layers {
   _DEV,
   _MOUSE,
   _NAV,
-  _QWERTY2,
+  _ALT,
   _DVORAK,
   _LOWER,
   _RAISE,
@@ -38,7 +38,7 @@ enum preonic_keycodes {
   NAV,
   FN1,
   FN2,
-  QWERTY2,
+  ALT,
   DVORAK,
   LOWER,
   RAISE,
@@ -82,25 +82,12 @@ enum preonic_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-/* Qwerty
- * ,-----------------------------------------------------------------------------------.
- * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Del  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
- * `-----------------------------------------------------------------------------------'
- */
 [_QWERTY] = LAYOUT_preonic_grid(
   KC_GRV  , KC_1   , KC_2   , KC_3   , KC_4 , KC_5  , KC_6   , KC_7 , KC_8   , KC_9   , KC_0   , KC_BSPC  ,
   KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R , KC_T  , KC_Y   , KC_U , KC_I   , KC_O   , KC_P   , KC_MINS  ,
   KC_X0   , KC_A   , KC_S   , KC_D   , KC_F , KC_G  , KC_H   , KC_J , KC_K   , KC_L   , KC_SCLN, KC_QUOT  ,
   KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_V , KC_B  , KC_N   , KC_M , KC_COMM, KC_DOT , KC_SLSH, KC_X4    ,
-  FN1     , KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_XBS , RAISE, DEV    , KC_RALT, KC_RCTL, FN2
+  FN1     , KC_LCTL, KC_LGUI, KC_LALT, LOWER, KC_SPC, KC_XBS , RAISE, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
 ),
 
 [_DEV] = LAYOUT_preonic_grid(
@@ -119,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
-[_QWERTY2] = LAYOUT_preonic_grid(
+[_ALT] = LAYOUT_preonic_grid(
   KC_GRV  , KC_1   , KC_2   , KC_3   , KC_4 , KC_5  , KC_6   , KC_7 , KC_8   , KC_9   , KC_0   , KC_BSPC  ,
   KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R , KC_T  , KC_Y   , KC_U , KC_I   , KC_O   , KC_P   , KC_MINS  ,
   KC_X0   , KC_A   , KC_S   , KC_D   , KC_F , KC_G  , KC_H   , KC_J , KC_K   , KC_L   , KC_SCLN, KC_QUOT  ,
@@ -217,7 +204,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = LAYOUT_preonic_grid(
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
   _______, QWERTY , _______, _______, QK_BOOT, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, KC_SPLT, _______, _______, _______, _______, _______, QWERTY2, DVORAK , _______, _______,
+  _______, ALT    , KC_SPLT, _______, _______, _______, _______, _______, _______, DVORAK , _______, _______,
   _______, _______, _______, _______, _______, _______, NAV    , MOUSE  , _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
@@ -230,6 +217,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case QWERTY:
           if (record->event.pressed) {
             set_single_persistent_default_layer(_QWERTY);
+          }
+          return false;
+          break;
+        case ALT:
+          if (record->event.pressed) {
+            set_single_persistent_default_layer(_ALT);
           }
           return false;
           break;
@@ -248,12 +241,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case FN1:
           if (record->event.pressed) {
             set_single_persistent_default_layer(_FN1);
-          }
-          return false;
-          break;
-        case QWERTY2:
-          if (record->event.pressed) {
-            set_single_persistent_default_layer(_QWERTY2);
           }
           return false;
           break;
