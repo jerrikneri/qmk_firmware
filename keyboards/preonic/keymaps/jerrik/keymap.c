@@ -88,19 +88,30 @@ enum preonic_keycodes {
 #define KC_UNSC LSFT(KC_MINS)           // Underscore
 
 // WSL
+// Desktop Navigation
 #define KC_SAW LGUI(KC_TAB)
 #define KC_HAW LGUI(KC_M)
 #define KC_DL LGUI(LCTL(KC_LEFT))
 #define KC_DR LGUI(LCTL(KC_RGHT))
 
+// "Spotlight"
 #define KC_WSL LALT(KC_SPC)
 
+// Dev Tools
 #define KC_DTW LCTL(LSFT(KC_J))
 
+// Tab Left/Right
 #define KC_TL LCTL(LSFT(KC_TAB))
 #define KC_TR LCTL(KC_TAB)
 
+// Open Terminal (Open Program 1 In Toolbar)
 #define KC_W1 LGUI(KC_1)
+
+// Snap Windows
+#define KC_SWL LGUI(KC_LEFT)
+#define KC_SWR LGUI(KC_RIGHT)
+#define KC_SWU LGUI(KC_UP)
+#define KC_SWD LGUI(KC_DOWN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -155,8 +166,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWERWIN] = LAYOUT_preonic_grid(
   KC_TILD, LALT(KC_1), LALT(KC_2), LALT(KC_3), LALT(KC_4), LALT(KC_5), LALT(KC_6), LALT(KC_7), LALT(KC_8),  LALT(KC_9), LALT(KC_0), KC_BSPC  ,
   KC_TILD, KC_1      , KC_2      , KC_3      , KC_4      , KC_5      , KC_6      , KC_7      , KC_8      ,  KC_9      , KC_0      , KC_EQL   ,
-  KC_WSL , KC_CAPP   , KC_RCPP   , KC_DL     , KC_DR     , KC_LBRC   , KC_RBRC   , KC_4      , KC_5      ,  KC_6      , KC_PLUS   , KC_BSLS  ,
-  _______, KC_PB     , KC_PF     , KC_SAW    , KC_HAW    , KC_LCBR   , KC_RCBR   , KC_1      , KC_2      ,  KC_3      , KC_MINS   , KC_RETURN,
+  KC_WSL , KC_SWL    , KC_SWR    , KC_DL     , KC_DR     , KC_LBRC   , KC_RBRC   , KC_4      , KC_5      ,  KC_6      , KC_PLUS   , KC_BSLS  ,
+  _______, KC_SWU    , KC_SWD    , KC_SAW    , KC_HAW    , KC_LCBR   , KC_RCBR   , KC_1      , KC_2      ,  KC_3      , KC_MINS   , KC_RETURN,
   KC_DTW , _______   , _______   , _______   , _______   , _______   , KC_DW     , _______   , KC_0      ,  KC_DOT    , _______   , KC_PENT
 ),
 
