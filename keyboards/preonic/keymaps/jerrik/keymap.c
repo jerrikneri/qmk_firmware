@@ -104,12 +104,16 @@ enum preonic_keycodes {
 #define KC_TL LCTL(LSFT(KC_TAB))
 #define KC_TR LCTL(KC_TAB)
 
+// Page Forward/Back
+#define KC_WPF LALT(KC_RGHT)
+#define KC_WPB LALT(KC_LEFT)
+
 // Open Terminal (Open Program 1 In Toolbar)
 #define KC_W1 LGUI(KC_1)
 
 // Snap Windows
 #define KC_SWL LGUI(KC_LEFT)
-#define KC_SWR LGUI(KC_RIGHT)
+#define KC_SWR LGUI(KC_RGHT)
 #define KC_SWU LGUI(KC_UP)
 #define KC_SWD LGUI(KC_DOWN)
 
@@ -182,8 +186,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISEWIN] = LAYOUT_preonic_grid(
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   KC_GRV , KC_EXLM, KC_AT  , KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PLUS,
-  _______, KC_W1 , _______, KC_HOME, KC_PGUP, KC_MINS, KC_EQL , KC_SF  , _______, KC_TL  , KC_TR  , KC_PIPE,
-  _______, _______, _______, KC_END , KC_PGDN, KC_UNSC, KC_PLUS, _______, _______, KC_PB  , KC_PF  , KC_PENT,
+  _______, KC_W1  , _______, KC_HOME, KC_PGUP, KC_MINS, KC_EQL , KC_SF  , _______, KC_TL  , KC_TR  , KC_PIPE,
+  _______, _______, _______, KC_END , KC_PGDN, KC_UNSC, KC_PLUS, _______, _______, KC_WPB , KC_WPF , KC_PENT,
   KC_DTW , _______, _______, _______, _______, KC_TAB , _______, _______, _______, _______, _______, _______
 ),
 
