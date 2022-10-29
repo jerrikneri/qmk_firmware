@@ -18,14 +18,17 @@
 #include "muse.h"
 
 enum preonic_layers {
+  _QWERTYLNX,
   _QWERTYMAC,
   _QWERTYWIN,
   _DEV,
   _MOUSE,
   _NAV,
   _ALT,
+  _LOWERLNX,
   _LOWERMAC,
   _LOWERWIN,
+  _RAISELNX,
   _RAISEMAC,
   _RAISEWIN,
   _FN1,
@@ -34,7 +37,8 @@ enum preonic_layers {
 };
 
 enum preonic_keycodes {
-  QWERTYMAC = SAFE_RANGE,
+  QWERTYLNX = SAFE_RANGE,
+  QWERTYMAC,
   QWERTYWIN,
   DEV,
   MOUSE,
@@ -42,16 +46,20 @@ enum preonic_keycodes {
   FN1,
   FN2,
   ALT,
+  LOWERLNX,
   LOWERMAC,
   LOWERWIN,
+  RAISELNX,
   RAISEMAC,
   RAISEWIN,
   BACKLIT
 };
 
 #define DEV MO(_DEV)
+#define LOWERLNX MO(_LOWERLNX)
 #define LOWERMAC MO(_LOWERMAC)
 #define LOWERWIN MO(_LOWERWIN)
+#define RAISELNX MO(_RAISELNX)
 #define RAISEMAC MO(_RAISEMAC)
 #define RAISEWIN MO(_RAISEWIN)
 #define FN1 TG(_FN1)
@@ -119,6 +127,14 @@ enum preonic_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+[_QWERTYLNX] = LAYOUT_preonic_grid(
+  KC_GRV  , KC_1   , KC_2   , KC_3   , KC_4    , KC_5  , KC_6   , KC_7    , KC_8   , KC_9   , KC_0   , FN1      ,
+  KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R    , KC_T  , KC_Y   , KC_U    , KC_I   , KC_O   , KC_P   , KC_MINS  ,
+  KC_X0   , KC_A   , KC_S   , KC_D   , KC_F    , KC_G  , KC_H   , KC_J    , KC_K   , KC_L   , KC_SCLN, KC_QUOT  ,
+  KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_V    , KC_B  , KC_N   , KC_M    , KC_COMM, KC_DOT , KC_SLSH, KC_X4    ,
+  KC_LCTL , KC_LCTL, KC_LGUI, KC_LALT, LOWERLNX, KC_SPC, KC_XBS , RAISELNX, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
+),
+
 [_QWERTYMAC] = LAYOUT_preonic_grid(
   KC_GRV  , KC_1   , KC_2   , KC_3   , KC_4    , KC_5  , KC_6   , KC_7    , KC_8   , KC_9   , KC_0   , KC_BSPC  ,
   KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R    , KC_T  , KC_Y   , KC_U    , KC_I   , KC_O   , KC_P   , KC_MINS  ,
@@ -159,6 +175,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   FN1     , KC_LCTL, KC_LALT, KC_LGUI, LOWERMAC, KC_SPC, KC_XBS , RAISEMAC, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
 ),
 
+[_LOWERLNX] = LAYOUT_preonic_grid(
+  KC_TILD, LALT(KC_1), LALT(KC_2), LALT(KC_3), LALT(KC_4), LALT(KC_5), LALT(KC_6), LALT(KC_7), LALT(KC_8),  LALT(KC_9), LALT(KC_0), KC_BSPC  ,
+  KC_TILD, KC_1      , KC_2      , KC_3      , KC_4      , KC_5      , KC_6      , KC_7      , KC_8      ,  KC_9      , KC_0      , KC_EQL   ,
+  KC_WSL , KC_SWL    , KC_SWR    , KC_DL     , KC_DR     , KC_LBRC   , KC_RBRC   , KC_4      , KC_5      ,  KC_6      , KC_PLUS   , KC_BSLS  ,
+  _______, KC_SWU    , KC_SWD    , KC_SAW    , KC_HAW    , KC_LCBR   , KC_RCBR   , KC_1      , KC_2      ,  KC_3      , KC_MINS   , KC_RETURN,
+  KC_DTW , _______   , _______   , _______   , _______   , _______   , KC_DW     , _______   , KC_0      ,  KC_DOT    , _______   , KC_PENT
+),
+
 [_LOWERMAC] = LAYOUT_preonic_grid(
   KC_TILD, LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5), LGUI(KC_6), LGUI(KC_7), LGUI(KC_8),  LGUI(KC_9), LGUI(KC_0), KC_BSPC  ,
   KC_TILD, KC_1      , KC_2      , KC_3      , KC_4      , KC_5      , KC_6      , KC_7      , KC_8      ,  KC_9      , KC_0      , KC_EQL   ,
@@ -173,6 +197,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_WSL , KC_SWL    , KC_SWR    , KC_DL     , KC_DR     , KC_LBRC   , KC_RBRC   , KC_4      , KC_5      ,  KC_6      , KC_PLUS   , KC_BSLS  ,
   _______, KC_SWU    , KC_SWD    , KC_SAW    , KC_HAW    , KC_LCBR   , KC_RCBR   , KC_1      , KC_2      ,  KC_3      , KC_MINS   , KC_RETURN,
   KC_DTW , _______   , _______   , _______   , _______   , _______   , KC_DW     , _______   , KC_0      ,  KC_DOT    , _______   , KC_PENT
+),
+
+[_RAISELNX] = LAYOUT_preonic_grid(
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+  KC_GRV , KC_EXLM, KC_AT  , KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PLUS,
+  _______, KC_W1  , _______, KC_HOME, KC_PGUP, KC_MINS, KC_EQL , KC_SF  , _______, KC_TL  , KC_TR  , KC_PIPE,
+  _______, _______, _______, KC_END , KC_PGDN, KC_UNSC, KC_PLUS, _______, _______, KC_WPB , KC_WPF , KC_PENT,
+  KC_DTW , _______, _______, _______, _______, KC_TAB , _______, _______, _______, _______, _______, _______
 ),
 
 [_RAISEMAC] = LAYOUT_preonic_grid(
@@ -216,11 +248,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_ADJUST] = LAYOUT_preonic_grid(
-  _______, _______  , _______  , _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, QWERTYMAC, QWERTYWIN, _______, QK_BOOT, _______, _______, _______, _______, _______, _______, _______,
-  _______, ALT      , KC_SPLT  , _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______  , _______  , _______, _______, _______, NAV    , MOUSE  , _______, _______, _______, _______,
-  _______, _______  , _______  , _______, _______, _______, _______, _______, _______, _______, _______, _______
+  _______, _______  , _______  , _______, _______, _______, _______, _______, _______, _______  , _______, _______,
+  _______, QWERTYMAC, QWERTYWIN, _______, QK_BOOT, _______, _______, _______, _______, _______  , _______, _______,
+  _______, ALT      , KC_SPLT  , _______, _______, _______, _______, _______, _______, QWERTYLNX, _______, _______,
+  _______, _______  , _______  , _______, _______, _______, NAV    , MOUSE  , _______, _______  , _______, _______,
+  _______, _______  , _______  , _______, _______, _______, _______, _______, _______, _______  , _______, _______
 )
 
 
@@ -228,6 +260,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+        case QWERTYLNX:
+          if (record->event.pressed) {
+            set_single_persistent_default_layer(_QWERTYLNX);
+          }
+          return false;
+          break;
         case QWERTYMAC:
           if (record->event.pressed) {
             set_single_persistent_default_layer(_QWERTYMAC);
@@ -264,6 +302,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
           return false;
           break;
+        case LOWERLNX:
+          if (record->event.pressed) {
+            layer_on(_LOWERLNX);
+            update_tri_layer(_LOWERLNX, _RAISELNX, _ADJUST);
+          } else {
+            layer_off(_LOWERLNX);
+            update_tri_layer(_LOWERLNX, _RAISELNX, _ADJUST);
+          }
+          return false;
+          break;
         case LOWERMAC:
           if (record->event.pressed) {
             layer_on(_LOWERMAC);
@@ -281,6 +329,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           } else {
             layer_off(_LOWERWIN);
             update_tri_layer(_LOWERWIN, _RAISEWIN, _ADJUST);
+          }
+          return false;
+          break;
+        case RAISELNX:
+          if (record->event.pressed) {
+            layer_on(_RAISELNX);
+            update_tri_layer(_LOWERLNX, _RAISELNX, _ADJUST);
+          } else {
+            layer_off(_RAISELNX);
+            update_tri_layer(_LOWERLNX, _RAISELNX, _ADJUST);
           }
           return false;
           break;
@@ -330,11 +388,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
+    case _RAISELNX:
+        rgblight_setrgb (0x00,  0x00, 0xFF);
+        break;
     case _RAISEMAC:
         rgblight_setrgb (0x00,  0x00, 0xFF);
         break;
     case _RAISEWIN:
         rgblight_setrgb (0x00,  0x00, 0xFF);
+        break;
+    case _LOWERLNX:
+        rgblight_setrgb (0xFF,  0x00, 0x00);
         break;
     case _LOWERMAC:
         rgblight_setrgb (0xFF,  0x00, 0x00);
@@ -408,8 +472,10 @@ void matrix_scan_user(void) {
 
 bool music_mask_user(uint16_t keycode) {
   switch (keycode) {
+    case RAISELNX:
     case RAISEMAC:
     case RAISEWIN:
+    case LOWERLNX:
     case LOWERMAC:
     case LOWERWIN:
       return false;
