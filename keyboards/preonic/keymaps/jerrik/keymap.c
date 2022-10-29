@@ -136,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R    , KC_T   , KC_Y   , KC_U    , KC_I    , KC_O   , KC_P   , KC_MINS  ,
   KC_X0   , KC_A   , KC_S   , KC_D   , KC_F    , KC_G   , KC_H   , KC_J    , KC_K    , KC_L   , KC_SCLN, KC_QUOT  ,
   NAV     , KC_Z   , KC_X   , KC_C   , KC_V    , KC_B   , KC_N   , KC_M    , KC_COMM , KC_DOT , KC_SLSH, KC_ENT   ,
-  KC_LCTL , FN1    , KC_ALT , KC_LGUI, LOWERLNX, KC_SPC , KC_XBS , RAISELNX, KC_LACTL, KC_DOWN, KC_UP  , KC_RGHT
+  KC_LCTL , FN1    , KC_LALT, KC_LGUI, LOWERLNX, KC_SPC , KC_XBS , RAISELNX, KC_LACTL, KC_DOWN, KC_UP  , KC_RGHT
 ),
 
 [_QWERTYMAC] = LAYOUT_preonic_grid(
@@ -404,7 +404,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         rgblight_setrgb (0x7A,  0x00, 0xFF);
         break;
     case _NAV:
-        rgblight_setrgb (8x7A,  8xFF, 8xFF);
+        rgblight_setrgb (0xAA,  0xAA, 0xAA);
         break;
     default: //  for any other layers, or the default layer
         rgblight_setrgb (0x00,  0xFF, 0xFF);
