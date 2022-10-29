@@ -62,6 +62,7 @@ enum preonic_keycodes {
 #define RAISELNX MO(_RAISELNX)
 #define RAISEMAC MO(_RAISEMAC)
 #define RAISEWIN MO(_RAISEWIN)
+#define NAV TG(_NAV)
 #define FN1 TG(_FN1)
 #define FN2 TG(_FN2)
 
@@ -125,14 +126,17 @@ enum preonic_keycodes {
 #define KC_SWU LGUI(KC_UP)
 #define KC_SWD LGUI(KC_DOWN)
 
+// LINUX
+#define KC_LACTL MT(MOD_LCTL, KC_LEFT)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTYLNX] = LAYOUT_preonic_grid(
-  KC_GRV  , KC_1   , KC_2   , KC_3   , KC_4    , KC_5  , KC_6   , KC_7    , KC_8   , KC_9   , KC_0   , FN1      ,
-  KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R    , KC_T  , KC_Y   , KC_U    , KC_I   , KC_O   , KC_P   , KC_MINS  ,
-  KC_X0   , KC_A   , KC_S   , KC_D   , KC_F    , KC_G  , KC_H   , KC_J    , KC_K   , KC_L   , KC_SCLN, KC_QUOT  ,
-  KC_LSFT , KC_Z   , KC_X   , KC_C   , KC_V    , KC_B  , KC_N   , KC_M    , KC_COMM, KC_DOT , KC_SLSH, KC_X4    ,
-  KC_LCTL , KC_LCTL, KC_LGUI, KC_LALT, LOWERLNX, KC_SPC, KC_XBS , RAISELNX, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT
+  KC_GRV  , KC_1   , KC_2   , KC_3   , KC_4    , KC_5   , KC_6   , KC_7    , KC_8    , KC_9   , KC_0   , KC_PSCR  ,
+  KC_TAB  , KC_Q   , KC_W   , KC_E   , KC_R    , KC_T   , KC_Y   , KC_U    , KC_I    , KC_O   , KC_P   , KC_MINS  ,
+  KC_X0   , KC_A   , KC_S   , KC_D   , KC_F    , KC_G   , KC_H   , KC_J    , KC_K    , KC_L   , KC_SCLN, KC_QUOT  ,
+  NAV     , KC_Z   , KC_X   , KC_C   , KC_V    , KC_B   , KC_N   , KC_M    , KC_COMM , KC_DOT , KC_SLSH, KC_ENT   ,
+  KC_LCTL , FN1    , KC_ALT , KC_LGUI, LOWERLNX, KC_SPC , KC_XBS , RAISELNX, KC_LACTL, KC_DOWN, KC_UP  , KC_RGHT
 ),
 
 [_QWERTYMAC] = LAYOUT_preonic_grid(
@@ -226,8 +230,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NAV] = LAYOUT_preonic_grid(
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, KC_HOME, KC_PGDN, KC_PGUP , KC_END, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+  NAV    , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
@@ -289,19 +293,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             set_single_persistent_default_layer(_MOUSE);
           }
           return false;
-          break;
-        case NAV:
-          if (record->event.pressed) {
-            set_single_persistent_default_layer(_NAV);
-          }
-          return false;
-          break;
-        case FN1:
-          if (record->event.pressed) {
-            set_single_persistent_default_layer(_FN1);
-          }
-          return false;
-          break;
         case LOWERLNX:
           if (record->event.pressed) {
             layer_on(_LOWERLNX);
@@ -413,7 +404,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         rgblight_setrgb (0x7A,  0x00, 0xFF);
         break;
     case _NAV:
-        rgblight_setrgb (0x7A,  0xFF, 0xFF);
+        rgblight_setrgb (8x7A,  8xFF, 8xFF);
         break;
     default: //  for any other layers, or the default layer
         rgblight_setrgb (0x00,  0xFF, 0xFF);
