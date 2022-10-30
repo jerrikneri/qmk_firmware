@@ -202,7 +202,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_DTW , _______, _______, _______, _______, KC_TAB , _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
-  [_FN1] = LAYOUT_preonic_grid(
+  [_FN1] = LAYOUT(
     KC_F11  , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                   KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12 ,
     KC_F11  , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                   KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F12 ,
     KC_CAPS , _______, _______, _______, _______, _______,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
@@ -219,7 +219,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
 
-  [_NAV] = LAYOUT_preonic_grid(
+  [_NAV] = LAYOUT(
     _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
     _______, KC_HOME, KC_PGDN, KC_PGUP , KC_END, _______,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
@@ -228,15 +228,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_ADJUST] =  LAYOUT(
-      KC_F1,   KC_F2    , KC_F3    ,   KC_F4,   KC_F5,   KC_F6,                   KC_F7  ,   KC_F8,   KC_F9,   KC_F10 ,  KC_F11,  KC_F12,
-      _______, QWERTYMAC, QWERTYWIN, EEP_RST, QK_BOOT, _______,                   _______, _______, _______, _______ , _______, KC_DEL,
-      _______, _______  , _______  , _______, _______, AG_NORM,                   AG_SWAP, _______, _______, QWERTYLNX, _______, _______,
-      _______, _______  , _______  , _______, _______, _______, _______, _______, _______, MOUSE, RGB_TOG, RGB_HUI  , RGB_SAI, RGB_VAI,
-      _______, _______  , _______  , _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_HUD  , RGB_SAD, RGB_VAD
-      )
+    KC_F1,   KC_F2    , KC_F3    ,   KC_F4,   KC_F5,   KC_F6,                   KC_F7  ,   KC_F8,   KC_F9,   KC_F10 ,  KC_F11,  KC_F12,
+    _______, QWERTYMAC, QWERTYWIN, EEP_RST, QK_BOOT, _______,                   _______, _______, _______, _______  , _______, KC_DEL,
+    _______, _______  , _______  , _______, _______, AG_NORM,                   AG_SWAP, _______, _______, QWERTYLNX, _______, _______,
+    _______, _______  , _______  , _______, _______, _______, _______, _______, _______, MOUSE  , RGB_TOG, RGB_HUI  , RGB_SAI, RGB_VAI,
+    _______, _______  , _______  , _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_HUD  , RGB_SAD, RGB_VAD
+  )
 
 };
-j
+
 // layer_state_t layer_state_set_user(layer_state_t state) {
 //   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 // }
