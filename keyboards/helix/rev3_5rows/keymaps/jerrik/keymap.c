@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TILD, LALT(KC_1), LALT(KC_2), LALT(KC_3), LALT(KC_4), LALT(KC_5),                   LALT(KC_6), LALT(KC_7), LALT(KC_8),  LALT(KC_9), LALT(KC_0), KC_BSPC  ,
     KC_TILD, KC_1      , KC_2      , KC_3      , KC_4      , KC_5      ,                   KC_6      , KC_7      , KC_8      ,  KC_9      , KC_0      , KC_EQL   ,
     KC_WSL , KC_SWL    , KC_SWR    , KC_DL     , KC_DR     , KC_LBRC   ,                   KC_RBRC   , KC_4      , KC_5      ,  KC_6      , KC_PLUS   , KC_BSLS  ,
-    _______, KC_SWU    , KC_SWD    , KC_SAW    , KC_HAW    , KC_LCBR   , _______, _______, KC_RCBR   , KC_1      , KC_2      ,  KC_3      , KC_MINS   , KC_RETURN,
+    KC_LSFT, KC_SWU    , KC_SWD    , KC_SAW    , KC_HAW    , KC_LCBR   , _______, _______, KC_RCBR   , KC_1      , KC_2      ,  KC_3      , KC_MINS   , KC_RETURN,
     KC_DTW , _______   , _______   , _______   , _______   , _______   , _______, _______, KC_DW     , _______   , KC_0      ,  KC_DOT    , _______   , KC_PENT
   ),
 
@@ -165,7 +165,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TILD, LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5),                   LGUI(KC_6), LGUI(KC_7), LGUI(KC_8),  LGUI(KC_9), LGUI(KC_0), KC_BSPC  ,
     KC_TILD, KC_1      , KC_2      , KC_3      , KC_4      , KC_5      ,                   KC_6      , KC_7      , KC_8      ,  KC_9      , KC_0      , KC_EQL   ,
     KC_SPLT, KC_CAPP   , KC_RCPP   , KC_SSL    , KC_SSR    , KC_LBRC   ,                   KC_RBRC   , KC_4      , KC_5      ,  KC_6      , KC_PLUS   , KC_BSLS  ,
-    _______, KC_PB     , KC_PF     , KC_SU     , KC_SD     , KC_LCBR   , _______, _______, KC_RCBR   , KC_1      , KC_2      ,  KC_3      , KC_MINS   , KC_RETURN,
+    KC_LSFT, KC_PB     , KC_PF     , KC_SU     , KC_SD     , KC_LCBR   , _______, _______, KC_RCBR   , KC_1      , KC_2      ,  KC_3      , KC_MINS   , KC_RETURN,
     KC_DEVT, _______   , _______   , _______   , _______   , _______   , _______, _______, KC_DW     , _______   , KC_0      ,  KC_DOT    , _______   , KC_PENT
   ),
 
@@ -173,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TILD, LALT(KC_1), LALT(KC_2), LALT(KC_3), LALT(KC_4), LALT(KC_5),                   LALT(KC_6), LALT(KC_7), LALT(KC_8),  LALT(KC_9), LALT(KC_0), KC_BSPC  ,
     KC_TILD, KC_1      , KC_2      , KC_3      , KC_4      , KC_5      ,                   KC_6      , KC_7      , KC_8      ,  KC_9      , KC_0      , KC_EQL   ,
     KC_WSL , KC_SWL    , KC_SWR    , KC_DL     , KC_DR     , KC_LBRC   ,                   KC_RBRC   , KC_4      , KC_5      ,  KC_6      , KC_PLUS   , KC_BSLS  ,
-    _______, KC_SWU    , KC_SWD    , KC_SAW    , KC_HAW    , KC_LCBR   , _______, _______, KC_RCBR   , KC_1      , KC_2      ,  KC_3      , KC_MINS   , KC_RETURN,
+    KC_LSFT, KC_SWU    , KC_SWD    , KC_SAW    , KC_HAW    , KC_LCBR   , _______, _______, KC_RCBR   , KC_1      , KC_2      ,  KC_3      , KC_MINS   , KC_RETURN,
     KC_DTW , _______   , _______   , _______   , _______   , _______   , _______, _______, KC_DW     , _______   , KC_0      ,  KC_DOT    , _______   , KC_PENT
   ),
   
