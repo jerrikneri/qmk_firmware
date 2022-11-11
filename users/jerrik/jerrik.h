@@ -46,7 +46,6 @@ enum custom_keycodes {
 #define RAISELNX MO(_RAISELNX)
 #define RAISEMAC MO(_RAISEMAC)
 #define RAISEWIN MO(_RAISEWIN)
-#define NAV TG(_NAV)
 #define FN1 TG(_FN1)
 #define FN2 TG(_FN2)
 
@@ -112,3 +111,7 @@ enum custom_keycodes {
 
 // LINUX
 #define KC_LACTL MT(MOD_LCTL, KC_LEFT)
+
+
+// ALL
+#define KC_DS LT(DEV, KC_SPC) // Toggle Dev / Space
